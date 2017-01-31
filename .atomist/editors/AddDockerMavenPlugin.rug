@@ -3,6 +3,18 @@
 @tag "docker"
 editor AddDockerMavenPlugin
 
+AddDockerImagePrefixProperty
+AddMavenPlugin
+
+@description "adds property"
+editor AddDockerImagePrefixProperty
+
+with Pom
+  do addOrReplaceProperty "docker.image.prefix" "eddumelendez"
+
+@description "adds maven plugin"
+editor AddMavenPlugin
+
 let dockerMavenPlugin = """<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>

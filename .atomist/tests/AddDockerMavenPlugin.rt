@@ -11,6 +11,9 @@ given
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
+    <properties>
+    </properties>
+
     <build>
         <plugins>
         </plugins>
@@ -23,4 +26,5 @@ when
 
 then
   fileExists resultFile
+    and fileContains resultFile "<docker.image.prefix>eddumelendez</docker.image.prefix>"
     and fileContains resultFile "docker-maven-plugin"
