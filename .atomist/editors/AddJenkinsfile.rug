@@ -1,0 +1,50 @@
+@description "adds jenkinsfile"
+@tag "jenkins"
+@tag "ci"
+editor AddJenkinsfile
+
+@displayName "Agent's Label"
+@description "name of the jenkins node"
+param jenkins_agent_label: @any
+
+@displayName "JDK"
+@description "Name of the JDK"
+param jenkins_tool_jdk_name: @any
+
+@displayName "Slack Channel"
+@description "name of the slack channel"
+param jenkins_environment_slack_channel: @any
+
+@displayName "Slack Team Domain"
+@description "name of the slack team domain"
+param jenkins_environment_slack_team_domain: @any
+
+@displayName "Slack API Token"
+@description "slack's api token"
+param jenkins_environment_slack_api_token: @any
+
+@displayName "Main branch"
+@description "name of your main branch"
+@optional
+@default "master"
+param jenkins_environment_main_branch: @any
+
+@displayName "Build command"
+@description "command to execute in the build stage"
+param jenkins_stage_build_command: @any
+
+@displayName "Artifacts"
+@description "files to archive"
+param jenkins_stage_artifacts_location: @any
+
+@displayName "Test command"
+@description "command to execute in the test stage"
+param jenkins_stage_test_command: @any
+
+@displayName "SonarQube command"
+@description "command to execute in the SonarQube stage"
+param jenkins_stage_sonarqube_command: @any
+
+with Project begin
+  do merge "jenkinsfile.vm" to "Jenkinsfile"
+end

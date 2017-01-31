@@ -1,0 +1,67 @@
+pipeline {
+    agent label: '$jenkins_agent_label'
+
+    tools {
+        jdk '$jenkins_tool_jdk_name'
+    }
+
+    environment {
+        SLACK_CHANNEL = "$jenkins_environment_slack_channel"
+        SLACK_MESSAGE = "Job '${env.JOB_NAME}' Build ${env.BUILD_NUMBER} URL ${env.BUILD_URL}"
+        SLACK_TEAM_DOMAIN = "$jenkins_environment_slack_team_domain"
+        SLACK_API_TOKEN = "$jenkins_environment_slack_api_token"
+        MAIN_BRANCH = "$jenkins_environment_main_branch"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "$jenkins_stage_build_command"
+            }
+            post {
+                success {
+                    archiveArtifacts artifacts: '$jenkins_stage_artifacts_location', onlyIfSuccessful: true
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                sh "$jenkins_stage_test_command"
+            }
+        }
+        stage('SonarQube Analysis') {
+            when {
+                branch "$MAIN_BRANCH"
+            }
+            steps {
+                withSonarQubeEnv("SonarQube") {
+                    sh "$jenkins_stage_sonarqube_command"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Job has finished"
+        }
+        success {
+            slackSendMessage "good"
+        }
+        failure {
+            slackSendMessage "danger"
+        }
+        unstable {
+            slackSendMessage "warning"
+        }
+    }
+}
+
+def slackSendMessage(String color){
+    slackSend message: "$SLACK_MESSAGE", channel: "$SLACK_CHANNEL", color: color, teamDomain: "$SLACK_TEAM_DOMAIN", token: "$SLACK_API_TOKEN"
+}
