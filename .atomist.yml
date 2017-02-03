@@ -75,3 +75,21 @@ generator:
     - "description": "Common Rugs for Eddú Meléndez projects"
     - "project_name": "common-rugs"
 
+---
+kind: "operation"
+client: "rug-cli 0.22.0"
+editor:
+  name: "atomist-rugs.travis-editors.EnableTravisForRugArchiveDSL"
+  group: "atomist-rugs"
+  artifact: "travis-editors"
+  version: "0.12.2"
+  origin:
+    repo: "https://github.com/atomist-rugs/travis-editors.git"
+    branch: "fb5fab9406ad30c0be90cb8272a8bb22fd8a3242"
+    sha: "fb5fab9"
+  parameters:
+    - "repo_slug": "eddumelendez/common-rugs"
+    - "github_token": "e**************************************c"
+    - "maven_user": "t*********u"
+    - "maven_token": "A***********************************************************************q"
+
