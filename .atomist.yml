@@ -121,3 +121,19 @@ editor:
   parameters:
     - "editorName": "AddJenkinsfile"
     - "description": "This is my newest editor... in TypeScript"
+---
+kind: "operation"
+client: "rug-cli 0.27.1"
+editor:
+  name: "AddTypeScriptEditor"
+  group: "atomist-rugs"
+  artifact: "rug-editors"
+  version: "0.21.0"
+  origin:
+    repo: "https://github.com/atomist-rugs/rug-editors.git"
+    branch: "7be616adc1d1530ba80bda3cbbffe957a3031b10"
+    sha: "7be616a"
+  parameters:
+    - "editorName": "AddDockerMavenPlugin"
+    - "description": "This is my newest editor... in TypeScript"
+
