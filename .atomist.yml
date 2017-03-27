@@ -93,3 +93,31 @@ editor:
     - "maven_user": "t*********u"
     - "maven_token": "A***********************************************************************q"
 
+---
+kind: "operation"
+client: "rug-cli 0.27.1"
+editor:
+  name: "AddTypeScript"
+  group: "atomist-rugs"
+  artifact: "rug-editors"
+  version: "0.20.0"
+  origin:
+    repo: "https://github.com/atomist-rugs/rug-editors.git"
+    branch: "9155568aae57327518bc4f6b31c2ee3793c2773e"
+    sha: "9155568"
+
+---
+kind: "operation"
+client: "rug-cli 0.27.1"
+editor:
+  name: "AddTypeScriptEditor"
+  group: "atomist-rugs"
+  artifact: "rug-editors"
+  version: "0.20.0"
+  origin:
+    repo: "https://github.com/atomist-rugs/rug-editors.git"
+    branch: "9155568aae57327518bc4f6b31c2ee3793c2773e"
+    sha: "9155568"
+  parameters:
+    - "editorName": "AddJenkinsfile"
+    - "description": "This is my newest editor... in TypeScript"
